@@ -82,7 +82,7 @@ cp /home/centos/shell-script/catalogue/mongo.repo /etc/yum.repos.d/mongo.repo  &
 
 dnf install mongodb-org-shell -y   &>> $Logfile
 
-mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js  &>> $Logfile
+mongo --host mongodb.infome.website </app/schema/catalogue.js  &>> $Logfile
 
 validate $? "dataloaded into mongodb"
 
