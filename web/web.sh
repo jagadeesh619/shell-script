@@ -25,25 +25,35 @@ fi
 echo "Executing web script at timestamp : $timestamp" &>> $Logfile
 
 
-dnf install nginx -y
+dnf install nginx -y  &>> $Logfile
 
-systemctl enable nginx
+validate $? "installing nginx"
 
-
-systemctl start nginx
-
-
-rm -rf /usr/share/nginx/html/*
+systemctl enable nginx &>> $Logfile
 
 
-curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
+systemctl start nginx &>> $Logfile
+
+validate $? "starting nginx"
 
 
-cd /usr/share/nginx/html
-
-unzip /tmp/web.zip
+rm -rf /usr/share/nginx/html/* &>> $Logfile
 
 
-cp roboshop.conf /etc/nginx/default.d/roboshop.conf 
+curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $Logfile
 
-systemctl restart nginx 
+
+cd /usr/share/nginx/html &>> $Logfile
+
+unzip -o /tmp/web.zip  &>> $Logfile
+
+
+cp roboshop.conf /etc/nginx/default.d/roboshop.conf &>> $Logfile
+
+systemctl restart nginx  &>> $Logfile
+
+validate $? "restarted nginx"
+
+echo "completed web script at timestamp : $timestamp" &>> $Logfile
+
+echo "completed web script at timestamp : $timestamp"

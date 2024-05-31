@@ -40,11 +40,19 @@ dnf install nodejs -y  &>> $Logfile
 
 validate $? "installing nodejs"
 
-useradd roboshop  &>> $Logfile
 
-validate $? "roboshop user"
+id roboshop #if roboshop user does not exist, then it is failure
 
-mkdir /app  &>> $Logfile
+if [ $? -ne 0 ]
+then
+    useradd roboshop &>> $Logfile
+    VALIDATE $? "roboshop user creation"
+else
+    echo -e "roboshop user already exist $Y SKIPPING $N"
+fi
+
+
+mkdir -p /app  &>> $Logfile
 
 validate $? "created app directory"
 
@@ -55,11 +63,13 @@ validate $? "downloaded catalogue zip file"
 
 cd /app &>> $Logfile
 
-unzip /tmp/catalogue.zip  &>> $Logfile
+unzip -o /tmp/catalogue.zip  &>> $Logfile
 
 npm install  &>> $Logfile
 
-cp catalogue.service /etc/systemd/system/catalogue.service   &>> $Logfile
+cp /home/centos/catalogue.service /etc/systemd/system/catalogue.service   &>> $Logfile
+
+validate $? " copying catalogue service"
 
 systemctl daemon-reload  &>> $Logfile
 
@@ -68,7 +78,7 @@ systemctl start catalogue &>> $Logfile
 validate $? "catalogue started"
 
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo  &>> $Logfile
+cp /home/centos/mongo.repo /etc/yum.repos.d/mongo.repo  &>> $Logfile
 
 dnf install mongodb-org-shell -y   &>> $Logfile
 
