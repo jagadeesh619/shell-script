@@ -67,7 +67,7 @@ unzip -o /tmp/catalogue.zip  &>> $Logfile
 
 npm install  &>> $Logfile
 
-cp /home/centos/catalogue.service /etc/systemd/system/catalogue.service   &>> $Logfile
+cp /home/centos/shell-script/catalogue/catalogue.service /etc/systemd/system/catalogue.service   &>> $Logfile
 
 validate $? " copying catalogue service"
 
@@ -78,7 +78,7 @@ systemctl start catalogue &>> $Logfile
 validate $? "catalogue started"
 
 
-cp /home/centos/mongo.repo /etc/yum.repos.d/mongo.repo  &>> $Logfile
+cp /home/centos/shell-script/catalogue/mongo.repo /etc/yum.repos.d/mongo.repo  &>> $Logfile
 
 dnf install mongodb-org-shell -y   &>> $Logfile
 
