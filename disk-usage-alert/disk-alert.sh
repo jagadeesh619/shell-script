@@ -14,5 +14,5 @@ do
     fi
 done <<< $disk_usage
 
-echo -e "$message" | | mail -s "High Disk Usage" mummadijagadeesh143@gmail.com
+echo -e "$message" | mail -s "High Disk Usage" mummadijagadeesh143@gmail.com
         
