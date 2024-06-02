@@ -3,7 +3,7 @@
 
 cd /tmp/roboshop-logs
 
-if [ $? -ne 0]
+if [ $? -ne 0 ]
 then
     echo "Directory is not available Please check "
 fi
