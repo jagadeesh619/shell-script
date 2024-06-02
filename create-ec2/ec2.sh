@@ -24,11 +24,11 @@ do
     ,"Changes": [{
       "Action"              : "CREATE"
       ,"ResourceRecordSet"  : {
-        "Name"              : "'" $i "'.infome.website"
+        "Name"              : "'$i'.infome.website"
         ,"Type"             : "A"
         ,"TTL"              : 1
         ,"ResourceRecords"  : [{
-            "Value"         : "'" $Private_ip "'"
+            "Value"         : "'$Private_ip'"
         }]
       }
     }]
