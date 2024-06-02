@@ -14,7 +14,7 @@ do
     else
         instances_type="t2.micro"
     fi
-    aws ec2 run-instances --image-id $ami_id --count 1 --instance-type $instances_type  --security-group-ids $sg_id --subnet-id vpc-0a21880ae4aedc468    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" 
+    aws ec2 run-instances --image-id $ami_id --count 1 --instance-type $instances_type  --security-group-ids $sg_id     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" 
 done
 
 
