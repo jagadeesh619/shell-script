@@ -10,7 +10,7 @@ do
     disk_filesys=$(echo $line | awk 'print $1')
     if [ $disk_per -gt $disk_limit ]
     then
-        message+="High Disk usage on $disk_filesys : $disk_per \n"
+        message+="High Disk usage :  $disk_filesys : $disk_per \n"
     fi
 done <<< $disk_usage
 
