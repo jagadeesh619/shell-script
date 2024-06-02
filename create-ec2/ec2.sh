@@ -4,7 +4,7 @@ ami_id="ami-0f3c7d07486cad139"
 sg_id="sg-06875d4a9e4510053"
 instances_type=""
 instances=("mongodb" "catalogue" "web")
-
+domain="infome.website"
 for i in "${instances[@]}"
 do  
     if [ $i=="mongodb" ]
@@ -24,7 +24,7 @@ do
     ,"Changes": [{
       "Action"              : "CREATE"
       ,"ResourceRecordSet"  : {
-        "Name"              : "'$i'.'infome.website'"
+        "Name"              : "'$i'.'$domain'"
         ,"Type"             : "A"
         ,"TTL"              : 1
         ,"ResourceRecords"  : [{
