@@ -8,7 +8,7 @@ instances=("mongodb" "catalogue" "web")
 for i in $instances
 do  
     echo "instance : $i"
-    if [ $i -eq "mongodb"]
+    if [ $i -eq "mongodb" ]
     then
         instances_type="t3.micro"
     else
