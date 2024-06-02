@@ -5,7 +5,7 @@ sg_id="sg-06875d4a9e4510053"
 instances_type=""
 instances=("mongodb" "catalogue" "web")
 
-for i in $instances
+for i in "${instances[@]}"
 do  
     echo "instance : $i"
     if [ $i=="mongodb" ]
