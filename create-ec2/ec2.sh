@@ -16,6 +16,24 @@ do
     Private_ip=$(aws ec2 run-instances --image-id $ami_id --count 1 --instance-type $instances_type  --security-group-ids $sg_id     --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" --query 'Instances[0].PrivateIpAddress' --output text) 
     echo "instance : $i : $Private_ip"
 
+    aws route53 change-resource-record-sets \
+  --hosted-zone-id Z01480582Y8DVJZNPON84 \
+  --change-batch '
+  {
+    "Comment": "Roboshop creating a record set"
+    ,"Changes": [{
+      "Action"              : "CREATE"
+      ,"ResourceRecordSet"  : {
+        "Name"              : "'" $i "'.infome.website"
+        ,"Type"             : "A"
+        ,"TTL"              : 1
+        ,"ResourceRecords"  : [{
+            "Value"         : "'" $Private_ip "'"
+        }]
+      }
+    }]
+  }
+
 done
 
 
