@@ -1,3 +1,4 @@
+#!/bin/bash
 str1="jagadeesh"
 count=0
 
